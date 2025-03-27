@@ -11,8 +11,8 @@ const Menu = () => {
   ]
   return (
     <div className='flex flex-col gap-4 font-bold w-[200px]'>
-        {menuNames.map(menu=>(
-          <NavLink to={menu.route}>
+        {menuNames.map((menu,index)=>(
+          <NavLink to={menu.route} key={index}>
             <div key={menu.id} className='flex items-center gap-2 cursor-pointer'>
               <i>{menu.icon}</i>
               <h2>{menu.name}</h2>
