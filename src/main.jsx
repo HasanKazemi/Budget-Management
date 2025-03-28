@@ -5,6 +5,8 @@ import './index.css'
 import App from './App.jsx'
 import Expense from './pages/Expense.jsx'
 import Income from './pages/Income.jsx'
+import { Provider } from 'react-redux'
+import { store } from './redux/index.jsx'
 
 const router = createBrowserRouter([
   {
@@ -19,6 +21,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}/>
+    <Provider store={store}>
+      <RouterProvider router={router}/>
+    </Provider>
   </StrictMode>,
 )
