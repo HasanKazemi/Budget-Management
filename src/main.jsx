@@ -7,14 +7,16 @@ import Expense from './pages/Expense.jsx'
 import Income from './pages/Income.jsx'
 import { Provider } from 'react-redux'
 import { store } from './redux/index.jsx'
+import Dashboard from './pages/Dashboard.jsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App/>,
     children: [
-      {path: '/expense',element: <Expense/>},
-      {path: '/income',element: <Income/>},
+      {index: true, element: <Dashboard/>},
+      {path: '/expense', element: <Expense/>},
+      {path: '/income', element: <Income/>},
     ]
   },
 ])
