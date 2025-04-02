@@ -1,10 +1,17 @@
 .expenseTable {
-    margin-top: 30px;
+    width: 80%;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #0470af;
 
     tr {
         border: 1px solid black;
     }
     th,td {
         padding: 10px;
+    }
+    th{
+        color: orange;
+        font-weight: bold;
     }
 }

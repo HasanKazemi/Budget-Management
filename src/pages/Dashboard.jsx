@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import styles from './dashboard.module.css'
+import FilterByTitle from '../components/FilterByTitle'
 
 const Dashboard = () => {
-    const { expense } = useSelector(state => state)
-    console.log(expense);
-    expense.map(e=>{
-        console.log(e);
-    })
+    const expenseList = useSelector(state => state.expense)
+    const expenseRef = useRef(expenseList)
+    const [filteredExpenseList, setFilteredExpenseList] = useState(expenseList)
+
     return (
-        <div>
+        <div className='w-full flex flex-col items-center gap-5'>
+            <FilterByTitle expenseRef={expenseRef} setFilteredExpenseList={setFilteredExpenseList} />
             <h1 className='text-2xl'>Recent Transactions</h1>
             <table className={styles.expenseTable}>
                 <thead>
@@ -21,12 +22,12 @@ const Dashboard = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {expense.map(item=>(
-                        <tr>
-                            <td>{item.title}</td>
-                            <td>{item.price}</td>
-                            <td>{item.category}</td>
-                            <td>{item.date}</td>
+                    {filteredExpenseList?.map((expense,index)=>(
+                        <tr key={index}>
+                            <td>{expense.title}</td>
+                            <td>{expense.price}</td>
+                            <td>{expense.category}</td>
+                            <td>{expense.date}</td>
                         </tr>
                     ))}
                 </tbody>
