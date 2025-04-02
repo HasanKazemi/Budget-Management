@@ -9,6 +9,10 @@ export const expenseSlice = createSlice({
         addExpense(state,action){
             state.push(action.payload)
             localStorage.setItem("expenseList", JSON.stringify(state))
+        },
+        deleteExpense(state,action){
+            state = state.filter(item => item.id !== action.payload)
+            localStorage.setItem("expenseList", JSON.stringify(state))
         }
     }
 })

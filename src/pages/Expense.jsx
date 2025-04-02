@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import CustomInput from '../components/CustomInput'
 import CustomSelect from '../components/CustomSelect'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { expenseActions } from '../redux/slices/ExpenseListSlice'
 
 const Expense = () => {
@@ -9,11 +9,13 @@ const Expense = () => {
   const [price, setPrice] = useState('')
   const [category, setCategory] = useState('')
   const [date, setDate] = useState(new Date().toISOString().split('T')[0])
+  const expense = useSelector(state=>state.expense)
   const dispatch = useDispatch()
 
   const handleSubmit = (event)=>{
     event.preventDefault()
     dispatch(expenseActions.addExpense({
+      id: expense.length +  1,
       title:title,
       price:price,
       category:category,
