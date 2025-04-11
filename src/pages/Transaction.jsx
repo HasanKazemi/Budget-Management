@@ -2,20 +2,22 @@ import React, { useState } from 'react'
 import CustomInput from '../components/CustomInput'
 import CustomSelect from '../components/CustomSelect'
 import { useDispatch, useSelector } from 'react-redux'
-import { expenseActions } from '../redux/slices/ExpenseListSlice'
+import { transActions } from '../redux/slices/TransactionListSlice'
 
-const Expense = () => {
+const Transaction = () => {
   const [title, setTitle] = useState('')
   const [price, setPrice] = useState('')
+  const [type, setType] = useState('income')
   const [category, setCategory] = useState('')
+  const defaultCategories = ['food', 'transport', 'bill', 'fun']
   const [date, setDate] = useState(new Date().toISOString().split('T')[0])
-  const expense = useSelector(state=>state.expense)
+  const transaction = useSelector(state=>state.transaction)
   const dispatch = useDispatch()
 
   const handleSubmit = (event)=>{
     event.preventDefault()
-    dispatch(expenseActions.addExpense({
-      id: expense.length +  1,
+    dispatch(transActions.addTransActions({
+      id: transaction.length +  1,
       title:title,
       price:price,
       category:category,
@@ -28,6 +30,7 @@ const Expense = () => {
         <form className='w-[40%]' onSubmit={(event)=>handleSubmit(event)}>
             <CustomInput label='title' type="text" value={title} setValue={setTitle} placeholder="insert title ....." />
             <CustomInput label='price' type="number" value={price} setValue={setPrice} placeholder="insert price ....." />
+            <CustomSelect label='category' defaultCategories={defaultCategories} setValue={setCategory} />
             <CustomSelect label='category' setValue={setCategory} />
             <CustomInput label='date' type="date" value={date} setValue={setDate} />
             <div className='flex justify-center'>
@@ -38,4 +41,4 @@ const Expense = () => {
   )
 }
 
-export default Expense
+export default Transaction

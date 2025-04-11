@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
-import Expense from './pages/Expense.jsx'
+import Transaction from './pages/Transaction.jsx'
 import Income from './pages/Income.jsx'
 import { Provider } from 'react-redux'
 import { store } from './redux/index.jsx'
@@ -15,8 +15,7 @@ const router = createBrowserRouter([
     element: <App/>,
     children: [
       {index: true, element: <Dashboard/>},
-      {path: '/expense', element: <Expense/>},
-      {path: '/income', element: <Income/>},
+      {path: '/transactions', element: <Transaction/>},
     ]
   },
 ])

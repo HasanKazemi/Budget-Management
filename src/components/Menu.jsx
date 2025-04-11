@@ -6,8 +6,7 @@ import { NavLink } from 'react-router-dom';
 const Menu = () => {
   const menuNames = [
     { id:1, name: 'Dashboard', route: "/", icon:<FaHome fill="#007bff"/> },
-    { id:2, name: 'Income', route: "/income", icon:<FaMoneyBillWave fill="#007bff" /> },
-    { id:3, name: 'Expense', route: "/expense", icon:<PiHandWithdrawBold fill="#007bff" />  },
+    { id:3, name: 'Transaction', route: "/transactions", icon:<PiHandWithdrawBold fill="#007bff" />  },
   ]
   return (
     <div className='flex flex-col gap-4 font-bold w-[200px]'>

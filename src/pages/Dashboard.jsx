@@ -2,21 +2,20 @@ import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styles from './dashboard.module.css'
 import FilterByTitle from '../components/FilterByTitle'
-import { expenseActions, selectFilteredExpense } from '../redux/slices/ExpenseListSlice'
+import { transActions, selectFilteredTransaction } from '../redux/slices/TransactionListSlice'
 import FilterByCategory from '../components/FilterByCategory'
 
 const Dashboard = () => {
-    const expenseList = useSelector(state => state.expense)
     const dispatch = useDispatch()
 
     const [filters, setFilters] = useState({
         searchTerm: "",
         category: "",
     })
-    const filteredExpense = useSelector(state => selectFilteredExpense(state,filters))
+    const filteredTransactions = useSelector(state => selectFilteredTransaction(state,filters))
 
-    const handleDelete = (expenseId)=>{
-        dispatch(expenseActions.deleteExpense(expenseId))
+    const handleDelete = (transId)=>{
+        dispatch(transActions.deleteTransaction(transId))
     }
 
     return (
@@ -26,7 +25,7 @@ const Dashboard = () => {
                 <FilterByCategory setFilters={setFilters} />
             </div>
             <h1 className='text-2xl'>Recent Transactions</h1>
-            <table className={styles.expenseTable}>
+            <table className={styles.transTable}>
                 <thead>
                     <tr className=''>
                         <th>Title</th>
@@ -37,7 +36,7 @@ const Dashboard = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {filteredExpense?.map((expense)=>(
+                    {filteredTransactions?.map((expense)=>(
                         <tr key={expense.id}>
                             <td>{expense.title}</td>
                             <td>{expense.price}</td>
