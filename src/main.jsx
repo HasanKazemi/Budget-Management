@@ -3,10 +3,10 @@ import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
-import Transaction from './pages/Transaction.jsx'
+import Transaction from './pages/Transaction.tsx'
 import { Provider } from 'react-redux'
 import { store } from './redux/index.jsx'
-import Dashboard from './pages/Dashboard.jsx'
+import Dashboard from './pages/Dashboard.tsx'
 
 const router = createBrowserRouter([
   {
