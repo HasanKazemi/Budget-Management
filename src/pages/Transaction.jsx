@@ -28,8 +28,8 @@ const Transaction = () => {
   }
 
   return (
-    <div className='w-[70%] p-[50px] flex justify-center items-center'>
-        <form className='w-[40%]' onSubmit={(event)=>handleSubmit(event)}>
+    <div className='w-[70%] flex justify-center items-center'>
+        <form className='w-[40%] flex flex-col gap-0' onSubmit={(event)=>handleSubmit(event)}>
             <CustomInput label='title' type="text" value={title} setValue={setTitle} placeholder="insert title ....." />
             <CustomInput label='price' type="number" value={price} setValue={setPrice} placeholder="insert price ....." />
             <CustomSelect label='type' options={defaultTpes} setValue={setType} />

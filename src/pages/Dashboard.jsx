@@ -31,6 +31,7 @@ const Dashboard = () => {
                         <th>Title</th>
                         <th>Price</th>
                         <th>Category</th>
+                        <th>type</th>
                         <th>Date</th>
                         <th>Delete</th>
                     </tr>
@@ -41,6 +42,7 @@ const Dashboard = () => {
                             <td>{expense.title}</td>
                             <td>{expense.price}</td>
                             <td>{expense.category}</td>
+                            <td>{expense.type}</td>
                             <td>{expense.date}</td>
                             <td onClick={()=>handleDelete(expense.id)} className='text-red-800 font-bold cursor-pointer'>X</td>
                             <td>{expense.id}</td>
