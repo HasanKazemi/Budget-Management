@@ -13,6 +13,12 @@ export const walletSlice = createSlice({
             state.push(newWallet)
             localStorage.setItem("wallets",JSON.stringify(state))
         },
+        deleteWallet(state,action){
+            const walletId = action.payload
+            const newState = state.filter(wallet => wallet.id !== walletId)
+            localStorage.setItem("wallets",JSON.stringify(newState))
+            return newState
+        },
     }
 })
-export const { addWallet } = walletSlice.actions
+export const { addWallet, deleteWallet } = walletSlice.actions

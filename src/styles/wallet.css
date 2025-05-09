@@ -15,4 +15,12 @@
     p {
         justify-self: flex-start;
     }
+    .deleteWallet {
+        color: white;
+        padding: 5px;
+        background-color: red;
+        border: 1px solid red;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 }

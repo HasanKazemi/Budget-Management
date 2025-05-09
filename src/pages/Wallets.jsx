@@ -1,9 +1,14 @@
 import React from 'react'
 import '../styles/wallet.css'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteWallet } from '../redux/slices/walletSlice'
 
 const Wallets = () => {
   const wallets = useSelector(state=>state.wallets)
+  const dispatch = useDispatch()
+  const handleDelete = (walletId)=>{
+    dispatch(deleteWallet(walletId))
+  }
   return (
     <div>
       <h1 className='walletPageTitle'>دارایی های من</h1>
@@ -16,6 +21,7 @@ const Wallets = () => {
           <div className='wallet-row' key={wallet.id}>
             <p>{wallet.walletLabel}</p>
             <p>{wallet.assetAmount.toLocaleString()}</p>
+            <button className='deleteWallet' onClick={()=>handleDelete(wallet.id)}>delete</button>
           </div>
         ))}
       </div>
