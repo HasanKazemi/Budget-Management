@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { addWallet } from '../redux/slices/walletSlice'
 import "../styles/addWallet.css"
 
 const AddWallet = () => {
 
-    const wallets = useSelector(state=>state.wallets)
     const dispatch = useDispatch()
 
     const [formData, setFormData] = useState({
@@ -20,12 +19,7 @@ const AddWallet = () => {
 
     const handleSubmit = (event)=>{
         event.preventDefault()
-        const newWallet = {
-            id: wallets.length ? wallets[wallets.length - 1].id + 1 : 1,
-            walletLabel: formData.walletLabel,
-            assetAmount: parseInt(formData.assetAmount),
-        }
-        dispatch(addWallet(newWallet))
+        dispatch(addWallet(formData))
         setFormData({
             walletLabel: "",
             assetAmount: 0,
