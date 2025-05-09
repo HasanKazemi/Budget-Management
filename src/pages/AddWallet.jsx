@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addWallet } from '../redux/slices/walletSlice'
+import "../styles/addWallet.css"
 
 const AddWallet = () => {
 
@@ -32,17 +33,17 @@ const AddWallet = () => {
     }
 
   return (
-    <div>
+    <div className='addWalletContainer'>
         <form onSubmit={handleSubmit}>
-            <div>
+            <div className='row'>
                 <label htmlFor="walletLabel">نام حساب</label>
                 <input type="text" name="walletLabel" id="walletLabel" value={formData.walletLabel} onChange={handleChange} />
             </div>
-            <div>
+            <div className='row'>
                 <label htmlFor="assetAmount">مقدار دارایی</label>
                 <input type="number" name="assetAmount" id="assetAmount" value={formData.assetAmount} onChange={handleChange} />
             </div>
-            <div>
+            <div className='row'>
                 <button type="submit">ثبت</button>
             </div>
         </form>
