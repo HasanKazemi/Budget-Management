@@ -22,7 +22,7 @@ const AddWallet = () => {
         const newWallet = {
             id: wallets.length ? wallets[wallets.length - 1].id + 1 : 1,
             walletLabel: formData.walletLabel,
-            assetAmount: formData.assetAmount,
+            assetAmount: parseInt(formData.assetAmount),
         }
         dispatch(addWallet(newWallet))
         setFormData({
