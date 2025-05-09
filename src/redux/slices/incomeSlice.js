@@ -1,0 +1,20 @@
+import { createSlice } from "@reduxjs/toolkit";
+
+export const incomeSlice = createSlice({
+    name: "income",
+    initialState: JSON.parse(localStorage.getItem("income") || "[]"),
+    reducers: {
+        addIncome(state,action){
+            const newIncome = {
+                id: state.length ? state[state.length-1].id + 1 : 1,
+                incomeTitle: action.payload.incomeTitle,
+                incomeAmount: parseInt(action.payload.incomeAmount),
+                toWallet: action.payload.toWallet,
+                incomeDate: action.payload.incomeDate,
+            }
+            state.push(newIncome)
+            localStorage.setItem("income",JSON.stringify(state))
+        }
+    }
+})
+export const { addIncome } = incomeSlice.actions
