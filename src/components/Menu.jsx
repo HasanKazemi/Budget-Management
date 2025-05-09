@@ -5,7 +5,8 @@ import "../styles/menu.css"
 const Menu = () => {
   return (
     <nav className='nav'>
-        <NavLink to="/wallets">wallets</NavLink>
+        <NavLink to="/wallets">حساب ها</NavLink>
+        <NavLink to="/wallets/AddNewWallet">افزودن حساب جدید</NavLink>
     </nav>
   )
 }

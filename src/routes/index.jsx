@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "../layout";
 import Wallets from "../pages/Wallets";
+import AddWallet from "../pages/AddWallet";
 
 export const router = createBrowserRouter([
     {
@@ -10,6 +11,10 @@ export const router = createBrowserRouter([
             {
                 path: "/wallets",
                 element: <Wallets/>,
+            },
+            {
+                path: "/wallets/addNewWallet",
+                element: <AddWallet/>,
             },
         ]
     }
