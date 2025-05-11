@@ -27,10 +27,14 @@ const AddIncome = () => {
 
     const handleSubmit = (event)=>{
         event.preventDefault()
-        console.log(formData.toWalletId);
-        
         dispatch(addIncome(formData))
         dispatch(incrementIncome(formData))
+        setFormData({
+            incomeTitle: "",
+            incomeAmount: 0,
+            toWalletId: 1,
+            incomeDate: thisTime,
+        })
     }
 
   return (
