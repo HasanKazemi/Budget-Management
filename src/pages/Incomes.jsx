@@ -30,7 +30,7 @@ const Incomes = () => {
               <td>{index + 1}</td>
               <td>{income.incomeTitle}</td>
               <td>{income.incomeAmount.toLocaleString()}</td>
-              <td>{findWallet(income.toWallet)}</td>
+              <td>{findWallet(income.toWalletId)}</td>
               <td>{income.incomeDate}</td>
             </tr>
           ))}

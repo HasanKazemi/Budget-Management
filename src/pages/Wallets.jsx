@@ -16,6 +16,7 @@ const Wallets = () => {
         <div className="wallet-row">
           <p> نام حساب </p>
           <p> مقدار دارایی (ریال) </p>
+          <p>حذف</p>
         </div>
         {wallets.map(wallet=>(
           <div className='wallet-row' key={wallet.id}>

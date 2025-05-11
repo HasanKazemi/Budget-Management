@@ -9,7 +9,7 @@ export const incomeSlice = createSlice({
                 id: state.length ? state[state.length-1].id + 1 : 1,
                 incomeTitle: action.payload.incomeTitle,
                 incomeAmount: parseInt(action.payload.incomeAmount),
-                toWallet: action.payload.toWallet,
+                toWalletId: action.payload.toWalletId,
                 incomeDate: action.payload.incomeDate,
             }
             state.push(newIncome)

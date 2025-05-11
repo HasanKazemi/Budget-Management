@@ -15,7 +15,7 @@ const AddIncome = () => {
     const [formData, setFormData] = useState({
         incomeTitle: "",
         incomeAmount: 0,
-        toWallet: 1,
+        toWalletId: 1,
         incomeDate: thisTime,
     })
 
@@ -42,8 +42,8 @@ const AddIncome = () => {
                 <input type="number" name="incomeAmount" id="incomeAmount" value={formData.incomeAmount} onChange={handleChange} />
             </div>
             <div>
-                <label htmlFor="toWallet"> به حساب </label>
-                <select name="toWallet" id="toWallet" value={formData.toWallet} onChange={handleChange}>
+                <label htmlFor="toWalletId"> به حساب </label>
+                <select name="toWalletId" id="toWalletId" value={formData.toWalletId} onChange={handleChange}>
                     {wallets.map(wallet=>(
                         <option value={wallet.id} key={wallet.id}>{wallet.walletLabel}</option>
                     ))}
