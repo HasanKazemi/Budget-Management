@@ -4,7 +4,13 @@ import "../styles/incomes.css"
 
 const Incomes = () => {
     const incomes = useSelector(state => state.income)
-    const wallets = useSelector(state => state.wallet)
+    const wallets = useSelector(state => state.wallets)
+
+    const findWallet = (walletId)=>{
+      const foundedWallet = wallets.find(wallet => wallet.id == parseInt(walletId))
+      return foundedWallet?.walletLabel
+    }
+
   return (
     <div className='incomesTableContainer'>
       <h1>لیست درآمدها</h1>
@@ -20,11 +26,11 @@ const Incomes = () => {
         </thead>
         <tbody>
           {incomes.map((income,index)=>(
-            <tr>
+            <tr key={income.id}>
               <td>{index + 1}</td>
               <td>{income.incomeTitle}</td>
               <td>{income.incomeAmount.toLocaleString()}</td>
-              <td>{income.toWallet}</td>
+              <td>{findWallet(income.toWallet)}</td>
               <td>{income.incomeDate}</td>
             </tr>
           ))}

@@ -14,7 +14,7 @@ const AddIncome = () => {
     const [formData, setFormData] = useState({
         incomeTitle: "",
         incomeAmount: 0,
-        toWallet: wallets[0]?.walletLabel,
+        toWallet: 1,
         incomeDate: thisTime,
     })
 
