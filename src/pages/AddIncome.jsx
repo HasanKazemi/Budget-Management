@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addIncome } from '../redux/slices/incomeSlice'
+import styles from '../styles/form.module.css'
 
 const AddIncome = () => {
 
@@ -30,7 +31,7 @@ const AddIncome = () => {
     }
 
   return (
-    <div>
+    <div className={styles.formContainer}>
         <form onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="incomeTitle"> عنوان </label>

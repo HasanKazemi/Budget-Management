@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addWallet } from '../redux/slices/walletSlice'
-import "../styles/addWallet.css"
+import styles from '../styles/form.module.css'
 
 const AddWallet = () => {
 
@@ -27,7 +27,7 @@ const AddWallet = () => {
     }
 
   return (
-    <div className='addWalletContainer'>
+    <div className={styles.formContainer}>
         <form onSubmit={handleSubmit}>
             <div className='row'>
                 <label htmlFor="walletLabel">نام حساب</label>
