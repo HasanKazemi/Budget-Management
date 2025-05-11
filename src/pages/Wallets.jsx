@@ -21,7 +21,7 @@ const Wallets = () => {
         {wallets.map(wallet=>(
           <div className='wallet-row' key={wallet.id}>
             <p>{wallet.walletLabel}</p>
-            <p>{wallet.assetAmount.toLocaleString()}</p>
+            <p>{wallet.balance.toLocaleString()}</p>
             <button className='deleteWallet' onClick={()=>handleDelete(wallet.id)}>delete</button>
           </div>
         ))}

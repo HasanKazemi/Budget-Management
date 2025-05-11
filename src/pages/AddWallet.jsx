@@ -9,7 +9,7 @@ const AddWallet = () => {
 
     const [formData, setFormData] = useState({
         walletLabel: "",
-        assetAmount: 0,
+        balance: 0,
     })
 
     const handleChange = (event)=>{
@@ -22,7 +22,7 @@ const AddWallet = () => {
         dispatch(addWallet(formData))
         setFormData({
             walletLabel: "",
-            assetAmount: 0,
+            balance: 0,
         })
     }
 
@@ -34,8 +34,8 @@ const AddWallet = () => {
                 <input type="text" name="walletLabel" id="walletLabel" value={formData.walletLabel} onChange={handleChange} />
             </div>
             <div className='row'>
-                <label htmlFor="assetAmount">مقدار دارایی</label>
-                <input type="number" name="assetAmount" id="assetAmount" value={formData.assetAmount} onChange={handleChange} />
+                <label htmlFor="balance">مقدار دارایی</label>
+                <input type="number" name="balance" id="balance" value={formData.balance} onChange={handleChange} />
             </div>
             <div className='row'>
                 <button type="submit">ثبت</button>
