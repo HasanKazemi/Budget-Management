@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styles from '../styles/form.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { addExpense } from '../redux/slices/expenseSlice'
+import { decreaseBalance } from '../redux/slices/walletSlice'
 
 const AddExpense = () => {
 
@@ -28,6 +29,7 @@ const AddExpense = () => {
     const handleSubmit = (e) =>{
         e.preventDefault()
         dispatch(addExpense(formData))
+        dispatch(decreaseBalance(formData))
         setFormData({
             expenseTitle: "",
             expenseAmount: 0,
