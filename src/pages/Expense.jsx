@@ -1,11 +1,13 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styles from "../styles/incomesAndexpenses.module.css"
 import { Link } from 'react-router-dom'
+import { deleteExpense } from '../redux/slices/expenseSlice'
 
 const Expense = () => {
     const expenses = useSelector(state => state.expense)
     const wallets = useSelector(state => state.wallets)
+    const dispatch = useDispatch()
 
     const findWallet = (walletId)=>{
         const foundedWallet = wallets.find(wallet => wallet.id == parseInt(walletId))
@@ -17,12 +19,13 @@ const Expense = () => {
         <table className={styles.table}>
             <thead>
                 <tr>
-                    <td>ردیف</td>
-                    <td>عنوان</td>
-                    <td>مبلغ</td>
-                    <td>از حساب</td>
-                    <td>دسته بندی</td>
-                    <td>تاریخ</td>
+                    <th>ردیف</th>
+                    <th>عنوان</th>
+                    <th>مبلغ</th>
+                    <th>از حساب</th>
+                    <th>دسته بندی</th>
+                    <th>تاریخ</th>
+                    <th>عملیات</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,6 +37,7 @@ const Expense = () => {
                         <td>{findWallet(expense.walletId)}</td>
                         <td></td>
                         <td>{expense.expenseDate}</td>
+                        <td onClick={()=>dispatch(deleteExpense(expense.id))}>حذف</td>
                     </tr>
                 ))}
             </tbody>

@@ -15,7 +15,12 @@ export const expenseSlice = createSlice({
             }
             state.push(newExpense)
             localStorage.setItem("expense",JSON.stringify(state))
-        }
+        },
+        deleteExpense(state,action){
+            const filteredState = state.filter(expense => expense.id !== action.payload)
+            localStorage.setItem("expense",JSON.stringify(filteredState))
+            return filteredState
+        },
     }
 })
-export const { addExpense } = expenseSlice.actions;
+export const { addExpense, deleteExpense } = expenseSlice.actions;
