@@ -2,6 +2,7 @@ import React from 'react'
 import '../styles/wallet.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteWallet } from '../redux/slices/walletSlice'
+import { Link } from 'react-router-dom'
 
 const Wallets = () => {
   const wallets = useSelector(state=>state.wallets)
@@ -12,6 +13,7 @@ const Wallets = () => {
   return (
     <div>
       <h1 className='walletPageTitle'>دارایی های من</h1>
+      <Link to="/wallets/addWallet" className='addNewLink'>افزودن حساب جدید</Link>
       <div className='walletContainer'>
         <div className="wallet-row">
           <p> نام حساب </p>

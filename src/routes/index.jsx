@@ -17,7 +17,7 @@ export const router = createBrowserRouter([
                 element: <Wallets/>,
             },
             {
-                path: "/wallets/addNewWallet",
+                path: "/wallets/addWallet",
                 element: <AddWallet/>,
             },
             {
@@ -25,7 +25,7 @@ export const router = createBrowserRouter([
                 element: <Incomes/>,
             },
             {
-                path: "/addIncome",
+                path: "/incomes/addIncome",
                 element: <AddIncome/>,
             },
             {
@@ -33,7 +33,7 @@ export const router = createBrowserRouter([
                 element: <Expense/>
             },
             {
-                path: "/addExpense",
+                path: "/expenses/addExpense",
                 element: <AddExpense/>,
             },
         ]

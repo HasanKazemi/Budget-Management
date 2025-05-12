@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import styles from "../styles/incomesAndexpenses.module.css"
+import { Link } from 'react-router-dom'
 
 const Expense = () => {
     const expenses = useSelector(state => state.expense)
@@ -12,6 +13,7 @@ const Expense = () => {
     }
   return (
     <div className={styles.tableContainer}>
+        <Link to="/expenses/addExpense" className='addNewLink'>ثبت هزینه جدید</Link>
         <table className={styles.table}>
             <thead>
                 <tr>
