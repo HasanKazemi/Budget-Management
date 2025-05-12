@@ -3,6 +3,7 @@ import styles from '../styles/form.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { addExpense } from '../redux/slices/expenseSlice'
 import { decreaseBalance } from '../redux/slices/walletSlice'
+import { expenseCategories } from '../constant/categories'
 
 const AddExpense = () => {
 
@@ -34,7 +35,7 @@ const AddExpense = () => {
             expenseTitle: "",
             expenseAmount: 0,
             walletId: 1,
-            expenseCategory: "",
+            expenseCategory: expenseCategories[0],
             expenseDate: thisTime,
         })
     }
@@ -61,7 +62,9 @@ const AddExpense = () => {
             <div>
                 <label htmlFor="expenseCategory">دسته بندی</label>
                 <select name="expenseCategory" id="expenseCategory" value={formData.expenseCategory} onChange={handleChange}>
-
+                    {expenseCategories.map(category=>(
+                        <option value={category}>{category}</option>
+                    ))}
                 </select>
             </div>
             <div>

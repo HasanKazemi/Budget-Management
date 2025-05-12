@@ -46,7 +46,7 @@ const Expense = () => {
                         <td>{expense.expenseTitle}</td>
                         <td className={styles.expenseAmount}>{expense.expenseAmount.toLocaleString()}</td>
                         <td>{findWallet(expense.walletId)}</td>
-                        <td></td>
+                        <td>{expense.expenseCategory}</td>
                         <td>{expense.expenseDate}</td>
                         <td className={styles.edit}>ویرایش</td>
                         <td onClick={()=>handleDelete(expense.id, expense.walletId, expense.expenseAmount)} className={styles.delete}>حذف</td>
