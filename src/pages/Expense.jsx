@@ -4,6 +4,12 @@ import styles from "../styles/incomesAndexpenses.module.css"
 
 const Expense = () => {
     const expenses = useSelector(state => state.expense)
+    const wallets = useSelector(state => state.wallets)
+
+    const findWallet = (walletId)=>{
+        const foundedWallet = wallets.find(wallet => wallet.id == parseInt(walletId))
+        return foundedWallet?.walletLabel
+    }
   return (
     <div className={styles.tableContainer}>
         <table className={styles.table}>
@@ -23,7 +29,7 @@ const Expense = () => {
                         <td>{index + 1}</td>
                         <td>{expense.expenseTitle}</td>
                         <td>{expense.expenseAmount}</td>
-                        <td></td>
+                        <td>{findWallet(expense.walletId)}</td>
                         <td></td>
                         <td>{expense.expenseDate}</td>
                     </tr>

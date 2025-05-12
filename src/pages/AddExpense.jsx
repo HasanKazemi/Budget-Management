@@ -25,8 +25,6 @@ const AddExpense = () => {
         setFormData(prev => ({...prev, [name]:value}))
     }
 
-
-
     const handleSubmit = (e) =>{
         e.preventDefault()
         dispatch(addExpense(formData))
@@ -54,7 +52,7 @@ const AddExpense = () => {
                 <label htmlFor="walletId">از حساب</label>
                 <select name="walletId" id="walletId" value={formData.walletId} onChange={handleChange}>
                     {wallets.map(wallet=>(
-                        <option key={wallet.id} value={wallet.id}>{wallet.walletLable}</option>
+                        <option key={wallet.id} value={wallet.id}>{wallet.walletLabel}</option>
                     ))}
                 </select>
             </div>
