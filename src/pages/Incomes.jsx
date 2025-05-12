@@ -1,11 +1,13 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styles from "../styles/incomesAndexpenses.module.css"
 import { Link } from 'react-router-dom'
+import { deleteIncome } from '../redux/slices/incomeSlice'
 
 const Incomes = () => {
     const incomes = useSelector(state => state.income)
     const wallets = useSelector(state => state.wallets)
+    const dispatch = useDispatch()
 
     const findWallet = (walletId)=>{
       const foundedWallet = wallets.find(wallet => wallet.id == parseInt(walletId))
@@ -24,6 +26,7 @@ const Incomes = () => {
             <th>مبلغ (ریال)</th>
             <th>به حساب</th>
             <th>تاریخ واریز</th>
+            <th>عملیات</th>
           </tr>
         </thead>
         <tbody>
@@ -34,6 +37,7 @@ const Incomes = () => {
               <td>{income.incomeAmount.toLocaleString()}</td>
               <td>{findWallet(income.toWalletId)}</td>
               <td>{income.incomeDate}</td>
+              <td onClick={()=>dispatch(deleteIncome(income.id))}>delete</td>
             </tr>
           ))}
         </tbody>

@@ -14,7 +14,12 @@ export const incomeSlice = createSlice({
             }
             state.push(newIncome)
             localStorage.setItem("income",JSON.stringify(state))
+        },
+        deleteIncome(state,action){
+            const filteredState = state.filter(income => income.id !== action.payload)
+            localStorage.setItem("income",JSON.stringify(filteredState))
+            return filteredState
         }
     }
 })
-export const { addIncome } = incomeSlice.actions
+export const { addIncome, deleteIncome } = incomeSlice.actions
