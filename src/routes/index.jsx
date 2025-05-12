@@ -5,6 +5,7 @@ import AddWallet from "../pages/AddWallet";
 import AddIncome from "../pages/AddIncome";
 import Incomes from "../pages/Incomes";
 import AddExpense from "../pages/AddExpense";
+import Expense from "../pages/Expense";
 
 export const router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
             {
                 path: "/addIncome",
                 element: <AddIncome/>,
+            },
+            {
+                path: "/expenses",
+                element: <Expense/>
             },
             {
                 path: "/addExpense",
