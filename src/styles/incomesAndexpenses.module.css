@@ -1,11 +1,11 @@
-.incomesTableContainer{
+.tableContainer{
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 30px;
 }
 
-.incomesTable {
+.table {
     width: 50%;
     text-align: center;
     border-collapse: collapse;

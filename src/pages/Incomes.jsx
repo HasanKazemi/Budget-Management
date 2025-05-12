@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import "../styles/incomes.css"
+import styles from "../styles/incomesAndexpenses.module.css"
 
 const Incomes = () => {
     const incomes = useSelector(state => state.income)
@@ -12,9 +12,9 @@ const Incomes = () => {
     }
 
   return (
-    <div className='incomesTableContainer'>
+    <div className={styles.tableContainer}>
       <h1>لیست درآمدها</h1>
-      <table className='incomesTable'>
+      <table className={styles.table}>
         <thead>
           <tr>
             <th>ردیف</th>
