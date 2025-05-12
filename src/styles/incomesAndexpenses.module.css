@@ -14,3 +14,23 @@
         padding: 5px;
     }
 }
+
+.incomeAmount {
+    color: green;
+    font-weight: 700;
+}
+
+.expenseAmount {
+    color: red;
+    font-weight: 700;
+}
+
+.edit {
+    color: purple;
+    cursor: pointer;
+}
+
+.delete {
+    color: darkorange;
+    cursor: pointer;
+}

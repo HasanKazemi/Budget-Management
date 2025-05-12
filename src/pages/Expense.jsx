@@ -16,16 +16,17 @@ const Expense = () => {
   return (
     <div className={styles.tableContainer}>
         <Link to="/expenses/addExpense" className='addNewLink'>ثبت هزینه جدید</Link>
+        <h1>لیست هزینه ها</h1>
         <table className={styles.table}>
             <thead>
                 <tr>
                     <th>ردیف</th>
                     <th>عنوان</th>
-                    <th>مبلغ</th>
+                    <th>مبلغ (ریال)</th>
                     <th>از حساب</th>
                     <th>دسته بندی</th>
                     <th>تاریخ</th>
-                    <th>عملیات</th>
+                    <th colSpan={2}>عملیات</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,11 +34,12 @@ const Expense = () => {
                     <tr key={expense.id}>
                         <td>{index + 1}</td>
                         <td>{expense.expenseTitle}</td>
-                        <td>{expense.expenseAmount}</td>
+                        <td className={styles.expenseAmount}>{expense.expenseAmount.toLocaleString()}</td>
                         <td>{findWallet(expense.walletId)}</td>
                         <td></td>
                         <td>{expense.expenseDate}</td>
-                        <td onClick={()=>dispatch(deleteExpense(expense.id))}>حذف</td>
+                        <td className={styles.edit}>ویرایش</td>
+                        <td onClick={()=>dispatch(deleteExpense(expense.id))} className={styles.delete}>حذف</td>
                     </tr>
                 ))}
             </tbody>

@@ -8,7 +8,7 @@ export const expenseSlice = createSlice({
             const newExpense = {
                 id: state.length ? state[state.length-1].id + 1 : 1,
                 expenseTitle: action.payload.expenseTitle,
-                expenseAmount: action.payload.expenseAmount,
+                expenseAmount: parseInt(action.payload.expenseAmount),
                 walletId: action.payload.walletId,
                 expenseCategory: action.payload.expenseCategory,
                 expenseDate: action.payload.expenseDate

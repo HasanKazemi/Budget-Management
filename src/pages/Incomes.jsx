@@ -26,7 +26,7 @@ const Incomes = () => {
             <th>مبلغ (ریال)</th>
             <th>به حساب</th>
             <th>تاریخ واریز</th>
-            <th>عملیات</th>
+            <th colSpan={2}>عملیات</th>
           </tr>
         </thead>
         <tbody>
@@ -34,10 +34,11 @@ const Incomes = () => {
             <tr key={income.id}>
               <td>{index + 1}</td>
               <td>{income.incomeTitle}</td>
-              <td>{income.incomeAmount.toLocaleString()}</td>
+              <td className={styles.incomeAmount}>{income.incomeAmount.toLocaleString()}</td>
               <td>{findWallet(income.toWalletId)}</td>
               <td>{income.incomeDate}</td>
-              <td onClick={()=>dispatch(deleteIncome(income.id))}>delete</td>
+              <td className={styles.edit}>ویرایش</td>
+              <td onClick={()=>dispatch(deleteIncome(income.id))} className={styles.delete}>حذف</td>
             </tr>
           ))}
         </tbody>
