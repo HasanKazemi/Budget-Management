@@ -13,7 +13,7 @@ export const walletSlice = createSlice({
             state.push(newWallet)
             localStorage.setItem("wallets",JSON.stringify(state))
         },
-        incrementIncome(state,action) {
+        increaseBalance(state,action) {
             const {toWalletId, incomeAmount} = action.payload
             const wallet = state.find(item=> item.id === parseInt(toWalletId))
             if (wallet) wallet.balance += parseInt(incomeAmount)
@@ -33,4 +33,4 @@ export const walletSlice = createSlice({
         },
     }
 })
-export const { addWallet, incrementIncome, decreaseBalance, deleteWallet } = walletSlice.actions
+export const { addWallet, increaseBalance, decreaseBalance, deleteWallet } = walletSlice.actions

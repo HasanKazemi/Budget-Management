@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addIncome } from '../redux/slices/incomeSlice'
 import styles from '../styles/form.module.css'
-import { incrementIncome } from '../redux/slices/walletSlice'
+import { increaseBalance } from '../redux/slices/walletSlice'
 
 const AddIncome = () => {
 
@@ -28,7 +28,7 @@ const AddIncome = () => {
     const handleSubmit = (event)=>{
         event.preventDefault()
         dispatch(addIncome(formData))
-        dispatch(incrementIncome(formData))
+        dispatch(increaseBalance(formData))
         setFormData({
             incomeTitle: "",
             incomeAmount: 0,
