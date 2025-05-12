@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import styles from "../styles/incomesAndexpenses.module.css"
 import { Link } from 'react-router-dom'
 import { deleteIncome } from '../redux/slices/incomeSlice'
+import { decreaseBalance } from '../redux/slices/walletSlice'
 
 const Incomes = () => {
     const incomes = useSelector(state => state.income)
@@ -12,6 +13,14 @@ const Incomes = () => {
     const findWallet = (walletId)=>{
       const foundedWallet = wallets.find(wallet => wallet.id == parseInt(walletId))
       return foundedWallet?.walletLabel
+    }
+
+    const handleDelete = (incomeId, toWalletId, incomeAmount)=>{
+      dispatch(deleteIncome(incomeId))
+      dispatch(decreaseBalance({
+        walletId: toWalletId,
+        expenseAmount: incomeAmount,
+      }))
     }
 
   return (
@@ -38,7 +47,7 @@ const Incomes = () => {
               <td>{findWallet(income.toWalletId)}</td>
               <td>{income.incomeDate}</td>
               <td className={styles.edit}>ویرایش</td>
-              <td onClick={()=>dispatch(deleteIncome(income.id))} className={styles.delete}>حذف</td>
+              <td onClick={()=>handleDelete(income.id, income.toWalletId, income.incomeAmount)} className={styles.delete}>حذف</td>
             </tr>
           ))}
         </tbody>

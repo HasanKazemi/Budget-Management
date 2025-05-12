@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import styles from "../styles/incomesAndexpenses.module.css"
 import { Link } from 'react-router-dom'
 import { deleteExpense } from '../redux/slices/expenseSlice'
+import { increaseBalance } from '../redux/slices/walletSlice'
 
 const Expense = () => {
     const expenses = useSelector(state => state.expense)
@@ -13,6 +14,15 @@ const Expense = () => {
         const foundedWallet = wallets.find(wallet => wallet.id == parseInt(walletId))
         return foundedWallet?.walletLabel
     }
+
+    const handleDelete = (expenseId, walletId, expenseAmount)=>{
+        dispatch(deleteExpense(expenseId))
+        dispatch(increaseBalance({
+            toWalletId: walletId,
+            incomeAmount: expenseAmount
+        }))
+    }
+
   return (
     <div className={styles.tableContainer}>
         <Link to="/expenses/addExpense" className='addNewLink'>ثبت هزینه جدید</Link>
@@ -39,7 +49,7 @@ const Expense = () => {
                         <td></td>
                         <td>{expense.expenseDate}</td>
                         <td className={styles.edit}>ویرایش</td>
-                        <td onClick={()=>dispatch(deleteExpense(expense.id))} className={styles.delete}>حذف</td>
+                        <td onClick={()=>handleDelete(expense.id, expense.walletId, expense.expenseAmount)} className={styles.delete}>حذف</td>
                     </tr>
                 ))}
             </tbody>
