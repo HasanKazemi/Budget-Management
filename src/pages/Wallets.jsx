@@ -16,15 +16,17 @@ const Wallets = () => {
       <Link to="/wallets/addWallet" className='addNewLink'>افزودن حساب جدید</Link>
       <div className='walletContainer'>
         <div className="wallet-row">
+          <p> ردیف </p>
           <p> نام حساب </p>
           <p> مقدار دارایی (ریال) </p>
-          <p>حذف</p>
+          <p>عملیات</p>
         </div>
         {wallets.map(wallet=>(
           <div className='wallet-row' key={wallet.id}>
+            <p>{wallet.id}</p>
             <p>{wallet.walletLabel}</p>
             <p>{wallet.balance.toLocaleString()}</p>
-            <button className='deleteWallet' onClick={()=>handleDelete(wallet.id)}>delete</button>
+            <button className='deleteWallet' onClick={()=>handleDelete(wallet.id)}>حذف</button>
           </div>
         ))}
       </div>

@@ -17,7 +17,7 @@
     }
     .deleteWallet {
         color: white;
-        padding: 5px;
+        padding: 5px 10px;
         background-color: red;
         border: 1px solid red;
         border-radius: 5px;

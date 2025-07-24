@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styles from "../styles/incomesAndexpenses.module.css"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { deleteIncome } from '../redux/slices/incomeSlice'
 import { decreaseBalance } from '../redux/slices/walletSlice'
 
@@ -9,6 +9,7 @@ const Incomes = () => {
     const incomes = useSelector(state => state.income)
     const wallets = useSelector(state => state.wallets)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const findWallet = (walletId)=>{
       const foundedWallet = wallets.find(wallet => wallet.id == parseInt(walletId))
@@ -46,7 +47,7 @@ const Incomes = () => {
               <td className={styles.incomeAmount}>{income.incomeAmount.toLocaleString()}</td>
               <td>{findWallet(income.toWalletId)}</td>
               <td>{income.incomeDate}</td>
-              <td className={styles.edit}>ویرایش</td>
+              <td onClick={()=>navigate(`/incomes/addIncome/${income.id}`)} className={styles.edit}>ویرایش</td>
               <td onClick={()=>handleDelete(income.id, income.toWalletId, income.incomeAmount)} className={styles.delete}>حذف</td>
             </tr>
           ))}

@@ -1,10 +1,16 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addIncome } from '../redux/slices/incomeSlice'
+import { addIncome, editIncome } from '../redux/slices/incomeSlice'
 import styles from '../styles/form.module.css'
 import { increaseBalance } from '../redux/slices/walletSlice'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const AddIncome = () => {
+    const params = useParams()
+    const incomeId = params.id
+    const incomes = useSelector(state => state.income)
+    const navigate = useNavigate()
+    const existIncome = incomes.find(income=>income.id==incomeId) || {}
 
     const dispatch = useDispatch()
     const wallets = useSelector(state => state.wallets)
@@ -14,10 +20,11 @@ const AddIncome = () => {
     const thisTime = now.toISOString().slice(0,16);
 
     const [formData, setFormData] = useState({
-        incomeTitle: "",
-        incomeAmount: 0,
-        toWalletId: 1,
-        incomeDate: thisTime,
+        incomeId: incomeId || undefined,
+        incomeTitle: existIncome.incomeTitle || "",
+        incomeAmount: existIncome.incomeAmount || 0,
+        toWalletId: existIncome.toWalletId || 1,
+        incomeDate: existIncome.incomeDate || thisTime,
     })
 
     const handleChange = (event)=>{
@@ -27,6 +34,10 @@ const AddIncome = () => {
 
     const handleSubmit = (event)=>{
         event.preventDefault()
+        if (incomeId) {
+            dispatch(editIncome(formData))
+            return navigate('/incomes')
+        }
         dispatch(addIncome(formData))
         dispatch(increaseBalance(formData))
         setFormData({

@@ -25,7 +25,7 @@ export const router = createBrowserRouter([
                 element: <Incomes/>,
             },
             {
-                path: "/incomes/addIncome",
+                path: "/incomes/addIncome/:id?",
                 element: <AddIncome/>,
             },
             {
