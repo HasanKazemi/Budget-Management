@@ -4,9 +4,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addExpense } from '../redux/slices/expenseSlice'
 import { decreaseBalance } from '../redux/slices/walletSlice'
 import { expenseCategories } from '../constant/categories'
+import { useParams } from 'react-router-dom'
 
 const AddExpense = () => {
-
+    const {id} = useParams()
+    const expenses = useSelector(state => state.expense)
+    const existExpense = expenses.find(ex => ex.id == id) || {}
     const dispatch = useDispatch()
     const wallets = useSelector(state => state.wallets)
 
@@ -15,11 +18,12 @@ const AddExpense = () => {
     const thisTime = now.toISOString().slice(0,16);
 
     const [formData, setFormData] = useState({
-        expenseTitle: "",
-        expenseAmount: 0,
-        walletId: 1,
-        expenseCategory: "",
-        expenseDate: thisTime,
+        id: parseInt(id) || undefined,
+        expenseTitle: existExpense.expenseTitle || "",
+        expenseAmount: existExpense.expenseAmount || 0,
+        walletId: existExpense.walletId || 1,
+        expenseCategory: existExpense.expenseCategory || "",
+        expenseDate: existExpense.expenseDate || thisTime,
     })
 
     const handleChange = (e)=>{
@@ -63,7 +67,7 @@ const AddExpense = () => {
                 <label htmlFor="expenseCategory">دسته بندی</label>
                 <select name="expenseCategory" id="expenseCategory" value={formData.expenseCategory} onChange={handleChange}>
                     {expenseCategories.map(category=>(
-                        <option value={category}>{category}</option>
+                        <option value={category} key={category}>{category}</option>
                     ))}
                 </select>
             </div>
