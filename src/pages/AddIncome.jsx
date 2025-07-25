@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addIncome, editIncome } from '../redux/slices/incomeSlice'
 import styles from '../styles/form.module.css'
-import { increaseBalance } from '../redux/slices/walletSlice'
+import { decreaseBalance, increaseBalance } from '../redux/slices/walletSlice'
 import { useNavigate, useParams } from 'react-router-dom'
 
 const AddIncome = () => {
@@ -34,7 +34,19 @@ const AddIncome = () => {
 
     const handleSubmit = (event)=>{
         event.preventDefault()
+        const incomeDiff = formData.incomeAmount - existIncome.incomeAmount
         if (incomeId) {
+            if (incomeDiff > 0) {
+                dispatch(increaseBalance({
+                    toWalletId: formData.toWalletId,
+                    incomeAmount: incomeDiff,
+                }))
+            } else {
+                dispatch(decreaseBalance({
+                    walletId: formData.toWalletId,
+                    expenseAmount: incomeDiff,
+                }))
+            }
             dispatch(editIncome(formData))
             return navigate('/incomes')
         }

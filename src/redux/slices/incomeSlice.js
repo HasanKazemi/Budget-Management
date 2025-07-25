@@ -6,7 +6,7 @@ export const incomeSlice = createSlice({
     reducers: {
         addIncome(state,action){
             const newIncome = {
-                incomeId: state.length ? state[state.length-1].id + 1 : 1,
+                id: state.length ? state[state.length-1].id + 1 : 1,
                 incomeTitle: action.payload.incomeTitle,
                 incomeAmount: parseInt(action.payload.incomeAmount),
                 toWalletId: action.payload.toWalletId,
@@ -24,7 +24,7 @@ export const incomeSlice = createSlice({
             const findedIncome = state.find(income => income.id == action.payload.incomeId)
             const {incomeId, incomeTitle, incomeAmount, toWalletId, incomeDate} = action.payload
             Object.assign(findedIncome,{
-                incomeId,
+                id: incomeId,
                 incomeTitle,
                 incomeAmount: parseInt(incomeAmount),
                 toWalletId,
