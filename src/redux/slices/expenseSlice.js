@@ -21,6 +21,11 @@ export const expenseSlice = createSlice({
             localStorage.setItem("expense",JSON.stringify(filteredState))
             return filteredState
         },
+        editExpense(state,action){
+            const findedExp = state.find(exp => exp.id == action.payload.id)
+            Object.assign(findedExp, action.payload)
+            localStorage.setItem("expense",JSON.stringify(state))
+        }
     }
 })
-export const { addExpense, deleteExpense } = expenseSlice.actions;
+export const { addExpense, deleteExpense, editExpense } = expenseSlice.actions;

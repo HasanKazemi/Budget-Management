@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import styles from '../styles/form.module.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { addExpense } from '../redux/slices/expenseSlice'
-import { decreaseBalance } from '../redux/slices/walletSlice'
+import { addExpense, editExpense } from '../redux/slices/expenseSlice'
+import { decreaseBalance, increaseBalance } from '../redux/slices/walletSlice'
 import { expenseCategories } from '../constant/categories'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const AddExpense = () => {
     const {id} = useParams()
@@ -12,6 +12,7 @@ const AddExpense = () => {
     const existExpense = expenses.find(ex => ex.id == id) || {}
     const dispatch = useDispatch()
     const wallets = useSelector(state => state.wallets)
+    const navigate = useNavigate()
 
     const now = new Date()
     now.setMinutes(now.getMinutes()-now.getTimezoneOffset())
@@ -22,7 +23,7 @@ const AddExpense = () => {
         expenseTitle: existExpense.expenseTitle || "",
         expenseAmount: existExpense.expenseAmount || 0,
         walletId: existExpense.walletId || 1,
-        expenseCategory: existExpense.expenseCategory || "",
+        expenseCategory: existExpense.expenseCategory || expenseCategories[0],
         expenseDate: existExpense.expenseDate || thisTime,
     })
 
@@ -33,6 +34,22 @@ const AddExpense = () => {
 
     const handleSubmit = (e) =>{
         e.preventDefault()
+        if (id) {
+            const expDiff = existExpense.expenseAmount - formData.expenseAmount
+            if (expDiff > 0) {
+                dispatch(increaseBalance({
+                    toWalletId: formData.walletId,
+                    incomeAmount: expDiff
+                }))
+            } else if (expDiff < 0) {
+                dispatch(decreaseBalance({
+                    walletId: formData.walletId,
+                    expenseAmount: -(expDiff)
+                }))
+            }
+            dispatch(editExpense(formData))
+            return navigate("/expenses")
+        }
         dispatch(addExpense(formData))
         dispatch(decreaseBalance(formData))
         setFormData({
@@ -42,6 +59,7 @@ const AddExpense = () => {
             expenseCategory: expenseCategories[0],
             expenseDate: thisTime,
         })
+        return navigate("/expenses")
     }
 
   return (
