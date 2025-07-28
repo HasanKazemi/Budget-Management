@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addIncome, editIncome } from '../redux/slices/incomeSlice'
 import styles from '../styles/form.module.css'
@@ -6,6 +6,7 @@ import { decreaseBalance, increaseBalance } from '../redux/slices/walletSlice'
 import { useNavigate, useParams } from 'react-router-dom'
 
 const AddIncome = () => {
+    const [stringAmount, setStringAmount] = useState("")
     const params = useParams()
     const incomeId = params.id
     const incomes = useSelector(state => state.income)
@@ -31,6 +32,31 @@ const AddIncome = () => {
         const {name,value} = event.target
         setFormData(prev => ({...prev, [name]:value}))
     }
+
+    useEffect(()=>{
+        const numToStringAmount = (value)=>{
+            const toman = Math.floor(value / 10)
+            let final = ""
+            if (toman === 0) {
+                final = ""
+            } else if (toman < 1000) {
+                final = toman + " تومان "
+            } else if (toman >= 1000 && toman < 1000000) {
+                const thousand = Math.floor(toman / 1000) + " هزار "
+                const hundred = (toman % 1000) === 0 ? "تومان" : Math.floor(toman % 1000) + "تومان"
+                final = thousand + hundred
+            } else if (toman >= 1000000 && toman < 1000000000) {
+                const milion = Math.floor(toman / 1000000) + " میلیون "
+                const thousand = Math.floor((toman % 1000000)/1000) === 0 ? "" : Math.floor((toman % 1000000)/1000) + " هزار"
+                const hundred = Math.floor(toman % 1000) === 0 ? " تومان " : Math.floor(toman % 1000) + " تومان "
+                final = milion + thousand + hundred
+            } else {
+                final = "مقدار بیش از حد مجاز"
+            }
+            setStringAmount(final)
+        }
+        numToStringAmount(formData.incomeAmount)
+    },[formData.incomeAmount])
 
     const handleSubmit = (event)=>{
         event.preventDefault()
@@ -73,6 +99,7 @@ const AddIncome = () => {
             <div>
                 <label htmlFor="incomeAmount">مبلغ</label>
                 <input type="number" name="incomeAmount" id="incomeAmount" value={formData.incomeAmount} onChange={handleChange} />
+                <p className={styles.stringAmount}>{stringAmount}</p>
             </div>
             <div>
                 <label htmlFor="toWalletId"> به حساب </label>
