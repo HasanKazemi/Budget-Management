@@ -4,6 +4,7 @@ import { addIncome, editIncome } from '../redux/slices/incomeSlice'
 import styles from '../styles/form.module.css'
 import { decreaseBalance, increaseBalance } from '../redux/slices/walletSlice'
 import { useNavigate, useParams } from 'react-router-dom'
+import useNumToStr from '../hooks/useNumToStr'
 
 const AddIncome = () => {
     const [stringAmount, setStringAmount] = useState("")
@@ -34,28 +35,7 @@ const AddIncome = () => {
     }
 
     useEffect(()=>{
-        const numToStringAmount = (value)=>{
-            const toman = Math.floor(value / 10)
-            let final = ""
-            if (toman === 0) {
-                final = ""
-            } else if (toman < 1000) {
-                final = toman + " تومان "
-            } else if (toman >= 1000 && toman < 1000000) {
-                const thousand = Math.floor(toman / 1000) + " هزار "
-                const hundred = (toman % 1000) === 0 ? "تومان" : Math.floor(toman % 1000) + "تومان"
-                final = thousand + hundred
-            } else if (toman >= 1000000 && toman < 1000000000) {
-                const milion = Math.floor(toman / 1000000) + " میلیون "
-                const thousand = Math.floor((toman % 1000000)/1000) === 0 ? "" : Math.floor((toman % 1000000)/1000) + " هزار"
-                const hundred = Math.floor(toman % 1000) === 0 ? " تومان " : Math.floor(toman % 1000) + " تومان "
-                final = milion + thousand + hundred
-            } else {
-                final = "مقدار بیش از حد مجاز"
-            }
-            setStringAmount(final)
-        }
-        numToStringAmount(formData.incomeAmount)
+        useNumToStr(formData.incomeAmount, setStringAmount)
     },[formData.incomeAmount])
 
     const handleSubmit = (event)=>{
