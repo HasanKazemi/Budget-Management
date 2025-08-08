@@ -5,6 +5,7 @@ import { addExpense, editExpense } from '../redux/slices/expenseSlice'
 import { decreaseBalance, increaseBalance } from '../redux/slices/walletSlice'
 import { expenseCategories } from '../constant/categories'
 import { useNavigate, useParams } from 'react-router-dom'
+import Amount from '../components/Amount'
 
 const AddExpense = () => {
     const {id} = useParams()
@@ -70,8 +71,7 @@ const AddExpense = () => {
                 <input type="text" name="expenseTitle" id="expenseTitle" placeholder='عنوان را وارد کنید...' value={formData.expenseTitle} onChange={handleChange} />
             </div>
             <div>
-                <label htmlFor="expenseAmount">مبلغ (ریال)</label>
-                <input type="number" name="expenseAmount" id="expenseAmount" value={formData.expenseAmount} onChange={handleChange} />
+                <Amount label="مبلغ (ریال)" name="expenseAmount" value={formData.expenseAmount} onChange={handleChange} />
             </div>
             <div>
                 <label htmlFor="walletId">از حساب</label>

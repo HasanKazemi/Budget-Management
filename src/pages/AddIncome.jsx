@@ -5,6 +5,7 @@ import styles from '../styles/form.module.css'
 import { decreaseBalance, increaseBalance } from '../redux/slices/walletSlice'
 import { useNavigate, useParams } from 'react-router-dom'
 import useNumToStr from '../hooks/useNumToStr'
+import Amount from '../components/Amount'
 
 const AddIncome = () => {
     const [stringAmount, setStringAmount] = useState("")
@@ -77,9 +78,7 @@ const AddIncome = () => {
                 <input type="text" name="incomeTitle" id="incomeTitle" value={formData.incomeTitle} onChange={handleChange} />
             </div>
             <div>
-                <label htmlFor="incomeAmount">مبلغ</label>
-                <input type="number" name="incomeAmount" id="incomeAmount" value={formData.incomeAmount} onChange={handleChange} />
-                <p className={styles.stringAmount}>{stringAmount}</p>
+                <Amount label="مبلغ" name="incomeAmount" value={formData.incomeAmount} onChange={handleChange} />
             </div>
             <div>
                 <label htmlFor="toWalletId"> به حساب </label>

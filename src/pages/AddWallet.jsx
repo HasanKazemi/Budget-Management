@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addWallet } from '../redux/slices/walletSlice'
 import styles from '../styles/form.module.css'
+import Amount from '../components/Amount'
 
 const AddWallet = () => {
 
@@ -34,8 +35,7 @@ const AddWallet = () => {
                 <input type="text" name="walletLabel" id="walletLabel" value={formData.walletLabel} onChange={handleChange} />
             </div>
             <div className='row'>
-                <label htmlFor="balance">مقدار دارایی</label>
-                <input type="number" name="balance" id="balance" value={formData.balance} onChange={handleChange} />
+                <Amount label="مقدار دارایی" name="balance" value={formData.balance} onChange={handleChange} />
             </div>
             <div className='row'>
                 <button type="submit">ثبت</button>
