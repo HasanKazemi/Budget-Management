@@ -31,6 +31,12 @@ export const walletSlice = createSlice({
             localStorage.setItem("wallets",JSON.stringify(newState))
             return newState
         },
+        calcTotal(state){
+            const total = state.reduce((acc,cur)=>{
+                acc + cur.balance
+            },0)
+            return total
+        },
     }
 })
-export const { addWallet, increaseBalance, decreaseBalance, deleteWallet } = walletSlice.actions
+export const { addWallet, increaseBalance, decreaseBalance, deleteWallet, calcTotal } = walletSlice.actions
