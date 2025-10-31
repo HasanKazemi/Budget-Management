@@ -3,8 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { deleteWallet } from '../redux/slices/walletSlice'
 import { Link } from 'react-router-dom'
 import styles from "../styles/wallet.module.css"
+import { convert, convertEnToPe } from 'persian-number'
 
 const Wallets = () => {
+  console.log(convert(51250));
+  
   const wallets = useSelector(state=>state.wallets)
   const dispatch = useDispatch()
   const handleDelete = (walletId)=>{
@@ -26,13 +29,13 @@ const Wallets = () => {
           <div className={styles.walletRow} key={wallet.id}>
             <p>{wallet.id}</p>
             <p>{wallet.walletLabel}</p>
-            <p>{wallet.balance.toLocaleString()}</p>
-            <button className={styles.deleteWallet} onClick={()=>handleDelete(wallet.id)}>حذف</button>
+            <p>{convertEnToPe(wallet.balance.toLocaleString())}</p>
+            <button className={styles.deleteBtn} onClick={()=>handleDelete(wallet.id)}>حذف</button>
           </div>
         ))}
-        <div className={styles.walletRow}>
+        <div className={styles.totalRow}>
           <p>جمع کل</p>
-          <p>{calcTotal.toLocaleString()} ريال</p>
+          <p>{convertEnToPe(calcTotal.toLocaleString())} ريال</p>
         </div>
       </div>
     </div>
