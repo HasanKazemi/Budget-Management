@@ -1,18 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteWallet } from '../redux/slices/walletSlice'
 import { Link } from 'react-router-dom'
 import styles from "../styles/wallet.module.css"
-import { convert, convertEnToPe } from 'persian-number'
+import { convertEnToPe } from 'persian-number'
+import Transfer from '../components/Transfer'
 
 const Wallets = () => {
-  console.log(convert(51250));
-  
   const wallets = useSelector(state=>state.wallets)
   const dispatch = useDispatch()
+  const [showTransfer, setShowTransfer] = useState(false)
+  const [transferFromId, setTransferFromId] = useState(0)
+
   const handleDelete = (walletId)=>{
     dispatch(deleteWallet(walletId))
   }
+
+  const handleTransfer = (walletId)=>{
+    setShowTransfer(true)
+    setTransferFromId(walletId)
+  }
+
   const calcTotal = wallets.reduce((acc,cur)=>acc + cur.balance,0)
   return (
     <div>
@@ -30,7 +38,10 @@ const Wallets = () => {
             <p>{wallet.id}</p>
             <p>{wallet.walletLabel}</p>
             <p>{convertEnToPe(wallet.balance.toLocaleString())}</p>
-            <button className={styles.deleteBtn} onClick={()=>handleDelete(wallet.id)}>حذف</button>
+            <div>
+              <button className={styles.transfer} onClick={()=>handleTransfer(wallet.id)}>انتقال</button>
+              <button className={styles.deleteBtn} onClick={()=>handleDelete(wallet.id)}>حذف</button>
+            </div>
           </div>
         ))}
         <div className={styles.totalRow}>
@@ -38,6 +49,9 @@ const Wallets = () => {
           <p>{convertEnToPe(calcTotal.toLocaleString())} ريال</p>
         </div>
       </div>
+      {showTransfer && (
+        <Transfer transferFromId={transferFromId} wallets={wallets} setShowTransfer={setShowTransfer} />
+      )}
     </div>
   )
 }
