@@ -3,9 +3,10 @@ import { useDispatch } from 'react-redux'
 import { addWallet } from '../redux/slices/walletSlice'
 import styles from '../styles/form.module.css'
 import Amount from '../components/Amount'
+import { useNavigate } from 'react-router-dom'
 
 const AddWallet = () => {
-
+    const navigate = useNavigate()
     const dispatch = useDispatch()
 
     const [formData, setFormData] = useState({
@@ -25,6 +26,7 @@ const AddWallet = () => {
             walletLabel: "",
             balance: 0,
         })
+        navigate("/")
     }
 
   return (

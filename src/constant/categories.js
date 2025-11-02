@@ -4,4 +4,5 @@ export const expenseCategories = [
     "تفریح",
     "بهداشت و درمان",
     "پس انداز",
+    "شارژ و اینترنت"
 ]

@@ -44,13 +44,11 @@ const AddIncome = () => {
         const incomeDiff = formData.incomeAmount - existIncome.incomeAmount
         if (incomeId) {
             if (incomeDiff > 0) {
-                console.log('+');
                 dispatch(increaseBalance({
                     toWalletId: formData.toWalletId,
                     incomeAmount: incomeDiff,
                 }))
             } else if (incomeDiff < 0) {
-                console.log('-');
                 dispatch(decreaseBalance({
                     walletId: formData.toWalletId,
                     expenseAmount: -(incomeDiff),
